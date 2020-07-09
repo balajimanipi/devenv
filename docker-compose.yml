@@ -1,0 +1,24 @@
+---
+version: '3'
+services:
+        mysql:
+                image: mysql:5.7
+                command: --init-file /data/application/inittables.sql
+                volumes:
+                        - ./Sample_react_microservice/inittables.sql:/data/application/inittables.sql
+                environment:
+                 MYSQL_ROOT_PASSWORD: password
+        devfrontend:
+                image: frontenddev:v1
+                ports:
+                 - "8080:8080"
+                links:
+                 - devauthservice:devfrontend
+        devauthservice:
+                image: authservice:v1
+                ports:
+                 - "8081:8081"
+                links:
+                 - mysql:devauthservice
+                 - mysql:devfrontend
+...
