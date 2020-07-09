@@ -9,13 +9,13 @@ services:
                 environment:
                  MYSQL_ROOT_PASSWORD: password
         devfrontend:
-                image: balajimanipi/frontenddev:latest
+                image: balajimanipi/frontenddev:29
                 ports:
                  - "8080:8080"
                 links:
                  - devauthservice:devfrontend
         devauthservice:
-                image: balajimanipi/authservice:latest
+                image: balajimanipi/authservice:29
                 ports:
                  - "8081:8081"
                 links:
